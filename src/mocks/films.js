@@ -80,4 +80,3 @@ export default [
     directors: ['Питер Фаррелли']
   }
 ]
-//https://www.kino-teatr.ru/movie/posters/big/5/144695.jpg
