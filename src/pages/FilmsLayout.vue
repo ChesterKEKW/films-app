@@ -6,18 +6,9 @@
 </template>
 
 <script>
-import MainHeader from '../components/MainHeader'
-import { mapActions } from 'vuex'
+import MainHeader from "../components/MainHeader";
 
 export default {
   components: { MainHeader },
-  methods: {
-    ...mapActions({
-      load: 'reactions/loadReactions'
-    })
-  },
-  created() {
-    this.load(1000)
-  }
-}
+};
 </script>
