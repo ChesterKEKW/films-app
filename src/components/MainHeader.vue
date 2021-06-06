@@ -1,24 +1,23 @@
 <template>
   <header>
     <div class="container">
-      <router-link
-        :to="{ name: 'main' }"
-        class="logo"
-      >
-        Кинотеатр
-      </router-link>
+      <router-link :to="{ name: 'main' }" class="logo"> Кинотеатр </router-link>
       <div class="links">
+        <router-link :to="{ name: 'films' }"> Фильмы </router-link>
         <router-link
-          :to="{ name: 'films' }"
+          :to="{ name: 'AdminFilms' }"
+          style="margin-left: 40px"
+          v-if="checkUser"
         >
-          Фильмы
+          Admin
         </router-link>
         <button
+          v-if="checkUser"
           type="button"
           class="btn btn-outline-light btn-lg"
-          @click="changeUserState"
+          @click="LogOut"
         >
-          {{ auth ? 'Выйти' : 'Войти' }}
+          Выйти
         </button>
       </div>
     </div>
@@ -26,30 +25,28 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+
 export default {
   data() {
     return {
-      auth: false
-    }
+      auth: false,
+    };
   },
-  created() {
-    this.auth = localStorage.getItem('auth') !== null
+  computed: {
+    ...mapGetters(["checkUser"]),
   },
   methods: {
-    changeUserState() {
-      if (this.auth) {
-        localStorage.removeItem('auth')
-        this.$router.push({ name: 'main'})
-      } else {
-        localStorage.setItem('auth', true)
-        this.auth = true
-      }
-    }
-  }
-}
+    async LogOut() {
+      await this.logoutUser();
+      this.$router.push({ path: "/" });
+    },
+    ...mapActions(["logoutUser"]),
+  },
+};
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 header {
   background-color: #0c0c0c;
   .container {
@@ -65,7 +62,7 @@ header {
     font-size: 25px;
   }
   .logo {
-    color: #EB5804;
+    color: #eb5804;
     font-size: 30px;
   }
   .links {

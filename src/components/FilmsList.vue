@@ -10,20 +10,20 @@
 </template>
 
 <script>
-import FilmCard from './FilmCard'
+import FilmCard from "./FilmCard";
 
 export default {
   props: {
     films: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
-  components: { FilmCard }
-}
+  components: { FilmCard },
+};
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .film-card {
   margin-bottom: 40px;
 }

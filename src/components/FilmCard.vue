@@ -1,11 +1,8 @@
 <template>
   <div class="film-card">
-    <img
-      :src="film.img"
-      :alt="film.title"
-    >
+    <img :src="film.image" :alt="film.name" />
     <p class="rating">{{ film.rating }}</p>
-    <p class="title">{{ film.title }}</p>
+    <p class="title">{{ film.name }}</p>
     <router-link
       :to="{ name: 'filmPage', params: { id: film.id } }"
       class="more-info"
@@ -19,13 +16,13 @@
 export default {
   props: {
     film: {
-      type: Object
-    }
-  }
-}
+      type: Object,
+    },
+  },
+};
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .film-card {
   position: relative;
   img {
@@ -42,7 +39,11 @@ export default {
     width: 100%;
     color: #ffffff;
     height: 100px;
-    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 90%);
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0) 90%
+    );
     font-weight: 700;
     padding: 20px;
     font-size: 30px;
@@ -52,7 +53,7 @@ export default {
     position: absolute;
     right: 0;
     top: 0;
-    background-color: #EB5804;
+    background-color: #eb5804;
     width: 100px;
     height: 50px;
     margin-bottom: 0;
@@ -82,7 +83,8 @@ export default {
     text-decoration: none;
     opacity: 0;
     transition: all 0.2s ease;
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       opacity: 1;
     }
   }
